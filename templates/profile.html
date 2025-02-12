@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+</head>
+<body>
+    {% for i in profile %}
+    <b>Name - </b>{{i[0]}}
+    <br>
+    <b>Phone Number -</b>{{i[1]}}
+    <br>
+    <b>GMail - </b>{{i[2]}}
+
+    {% endfor %}
+</body>
+</html>

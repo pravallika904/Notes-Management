@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <style>
+        /* Add some basic styling to make it look nice */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .note-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .note {
+            background-color: #f7f7f7;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(33.33% - 20px);
+        }
+        .note:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .note-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<body>
+    <button><a href="{{url_for('home')}}">BACK</a></button>
+    <h1>Notes</h1>
+    <ul class="note-list">
+        {% if data %}
+            {% for i in data %}
+                <li class="note">
+                    <h2 class="note-title">{{ i[0] }}</h2>
+                    <p>{{ i[1] }}</p>
+                    <a href="{{url_for('particulrnotes',id1=i[2])}}">read notes</a>
+                </li>
+            {% endfor %}
+        {% else %}
+            <p>sorry you still not created any notes</p>
+        {% endif %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>read notes</title>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+    .notes-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .note {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .note:last-child {
+        border-bottom: none;
+    }
+</style>
+<body>
+    <div class="notes-container">
+        {% for i in notes %}
+            <div class="note">
+                <b>Notes ID</b>{{i[0]}}
+                <br>
+                <b>Youur registered email</b>{{i[1]}}
+                <br>
+                <b>Tilte</b>{{i[2]}}
+                <br>
+                <b>Notes</b>{{i[3]}}
+                <br>
+                <b>Creted Date</b>{{i[4]}}
+                <br>
+                <b>Update date</b>{{i[5]}}
+            </div>
+            <button><a href="{{url_for('updatenotes',id1 =i[0])}}">UPDATE</a></button>
+            <br>
+            <button><a href="{{url_for('deletenotes',id1=i[0])}}">DELETE</a></button>
+        {% endfor %}
+    </div>
+</body>
+</html>
